@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Ma Calculatrice</title>
+<style>
+body { background: #ffe4f1; font-family: Arial; display: flex; justify-content: center; padding-top: 40px; }
+.calculatrice { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 0 20px pink; width: 280px; text-align: center; }
+#ecran { width: 95%; height: 50px; font-size: 28px; text-align: right; border: 2px solid pink; border-radius: 10px; margin-bottom: 15px; padding: 5px; }
+button { width: 60px; height: 60px; font-size: 20px; margin: 3px; border: none; border-radius: 15px; background: #ffd1e8; cursor: pointer; }
+button:hover { background: #ff9ecf; color: white; }
+.egal { background: #ff4fa3; color: white; width: 128px; }
+</style>
+</head>
+<body>
+<div class="calculatrice">
+<h2> Ma Calculatrice</h2>
+<input type="text" id="ecran" readonly>
+<br>
+<button onclick="ajouter('7')">7</button>
+<button onclick="ajouter('8')">8</button>
+<button onclick="ajouter('9')">9</button>
+<button onclick="ajouter('/')">÷</button><br>
+<button onclick="ajouter('4')">4</button>
+<button onclick="ajouter('5')">5</button>
+<button onclick="ajouter('6')">6</button>
+<button onclick="ajouter('*')">×</button><br>
+<button onclick="ajouter('1')">1</button>
+<button onclick="ajouter('2')">2</button>
+<button onclick="ajouter('3')">3</button>
+<button onclick="ajouter('-')">-</button><br>
+<button onclick="ajouter('0')">0</button>
+<button onclick="ajouter('.')">.</button>
+<button onclick="effacer()">C</button>
+<button onclick="ajouter('+')">+</button><br>
+<button class="egal" onclick="calculer()">=</button>
+</div>
+<script>
+function ajouter(valeur) { document.getElementById('ecran').value += valeur; }
+function effacer() { document.getElementById('ecran').value = ''; }
+function calculer() {
+  try { document.getElementById('ecran').value = eval(document.getElementById('ecran').value); }
+  catch { document.getElementById('ecran').value = 'Erreur'; }
+}
+</script>
+</body>
+</html>
