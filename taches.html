@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mes Tâches</title>
+<style>
+body { background: #ffe4f1; font-family: Arial; display: flex; justify-content: center; padding: 20px; margin: 0; }
+.boite { background: white; padding: 25px; border-radius: 25px; box-shadow: 0 0 25px pink; width: 100%; max-width: 400px; text-align: center; }
+input { width: 65%; padding: 12px; font-size: 17px; border: 2px solid pink; border-radius: 12px; }
+.btn-ajout { background: #ff4fa3; color: white; border: none; padding: 12px 18px; font-size: 17px; border-radius: 12px; cursor: pointer; font-weight: bold; }
+ul { list-style: none; padding: 0; text-align: left; }
+li { background: #fff0f7; padding: 12px; margin: 8px 0; border-radius: 12px; font-size: 18px; display: flex; justify-content: space-between; align-items: center; }
+.fini { text-decoration: line-through; opacity: 0.5; }
+.btn-sup { background: #ff8fab; color: white; border: none; padding: 6px 10px; border-radius: 8px; cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="boite">
+<h2> Mes Tâches</h2>
+<p>Écris ta tâche et clique sur +</p>
+<input type="text" id="nouvelle" placeholder="Ex: Faire mes devoirs...">
+<button class="btn-ajout" onclick="ajouter()">+</button>
+<ul id="liste"></ul>
+<p id="compteur"></p>
+</div>
+<script>
+function ajouter() {
+  let texte = document.getElementById('nouvelle').value;
+  if (texte === '') { alert('Écris quelque chose !'); return; }
+  let li = document.createElement('li');
+  li.innerHTML = '<span onclick="this.parentElement.classList.toggle(\'fini\')">' + texte + '</span> <button class="btn-sup" onclick="this.parentElement.remove(); compter()">X</button>';
+  document.getElementById('liste').appendChild(li);
+  document.getElementById('nouvelle').value = '';
+  compter();
+}
+function compter() {
+  let total = document.querySelectorAll('li').length;
+  document.getElementById('compteur').innerText = 'Tu as ' + total + ' tâche(s)';
+}
+</script>
+</body>
+</html>
