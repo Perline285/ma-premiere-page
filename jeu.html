@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devine le Nombre</title>
+<style>
+body { background: #ffe4f1; font-family: Arial; display: flex; justify-content: center; padding: 20px; margin: 0; }
+.boite { background: white; padding: 25px; border-radius: 25px; box-shadow: 0 0 25px pink; width: 100%; max-width: 400px; text-align: center; }
+input { width: 60%; padding: 12px; font-size: 20px; text-align: center; border: 2px solid pink; border-radius: 12px; }
+button { background: #ff4fa3; color: white; border: none; padding: 12px 20px; font-size: 18px; border-radius: 12px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+#message { font-size: 22px; font-weight: bold; margin: 20px 0; min-height: 30px; }
+#essais { color: #888; }
+</style>
+</head>
+<body>
+<div class="boite">
+<h2>🎲 Devine le Nombre</h2>
+<p>Je pense à un nombre entre <b>1 et 100</b>.<br>À toi de le trouver !</p>
+<input type="number" id="choix" placeholder="Ton nombre...">
+<br>
+<button onclick="verifier()">Deviner !</button>
+<p id="message">Bonne chance ! 🍀</p>
+<p id="essais">Essais : 0</p>
+<button onclick="recommencer()" style="background:#ff8fab;">🔄 Rejouer</button>
+</div>
+<script>
+let secret = Math.floor(Math.random() * 100) + 1;
+let nbEssais = 0;
+function verifier() {
+  let choix = document.getElementById('choix').value;
+  if (choix === '') { alert('Écris un nombre !'); return; }
+  nbEssais++;
+  document.getElementById('essais').innerText = 'Essais : ' + nbEssais;
+  let msg = document.getElementById('message');
+  if (choix == secret) { msg.innerText = '🎉 BRAVO ! Tu as trouvé en ' + nbEssais + ' essais !'; msg.style.color = 'green'; }
+  else if (choix < secret) { msg.innerText = '📈 C’est PLUS grand !'; msg.style.color = '#ff4fa3'; }
+  else { msg.innerText = '📉 C’est PLUS petit !'; msg.style.color = '#ff4fa3'; }
+  document.getElementById('choix').value = '';
+}
+function recommencer() {
+  secret = Math.floor(Math.random() * 100) + 1;
+  nbEssais = 0;
+  document.getElementById('essais').innerText = 'Essais : 0';
+  document.getElementById('message').innerText = 'Nouvelle partie ! Bonne chance ! 🍀';
+  document.getElementById('message').style.color = 'black';
+}
+</script>
+</body>
+</html>
